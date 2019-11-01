@@ -1012,6 +1012,9 @@ public class StatusBar extends SystemUI implements
                 result.mAppearanceRegions, result.mNavbarColorManagedByIme, result.mBehavior,
                 result.mRequestedVisibilities, result.mPackageName);
 
+        mCustomSettingsObserver.observe();
+        mCustomSettingsObserver.update();
+
         // StatusBarManagerService has a back up of IME token and it's restored here.
         mCommandQueueCallbacks.setImeWindowStatus(mDisplayId, result.mImeToken,
                 result.mImeWindowVis, result.mImeBackDisposition, result.mShowImeSwitcher);
@@ -1988,6 +1991,36 @@ public class StatusBar extends SystemUI implements
         }
     }
 
+    private CustomSettingsObserver mCustomSettingsObserver = new CustomSettingsObserver(mHandler);
+    private class CustomSettingsObserver extends ContentObserver {
+
+        CustomSettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            /*resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.XXX),
+                    false, this, UserHandle.USER_ALL);*/
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            /*if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.XXX))) {
+                doXXX();
+            }*/
+        }
+
+        public void update() {
+            //doXXX();
+        }
+    }
+
+    /*private void doXXX() {
+    }*/
+    
     static class AnimateExpandSettingsPanelMessage {
         final String mSubpanel;
 
