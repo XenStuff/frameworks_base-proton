@@ -123,7 +123,6 @@ android_library {
         "bcsmartspace-res",
         "colorkt",
         "themelib",
-        "//hardware/google/interfaces:com.google.hardware.pixel.display-V3-java",
         "smartspace-google",
     ],
     manifest: "AndroidManifest.xml",
